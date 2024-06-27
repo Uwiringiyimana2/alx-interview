@@ -7,10 +7,14 @@ def pascal_triangle(n):
       the Pascal’s triangle of n
     """
     triangle = []
-    for row in range(n):
-        res = []
-        for col in range(row + 1):
-            result = factorial(row) // (factorial(col) * factorial(row - col))
-            res.append(result)
-        triangle.append(res)
+    if type(n) is not int or n <= 0:
+        return triangle
+    for i in range(n):
+        line = []
+        for j in range(i + 1):
+            if j == 0 or j == i:
+                line.append(1)
+            elif i > 0 and j > 0:
+                line.append(triangle[i - 1][j - 1] + triangle[i - 1][j])
+        triangle.append(line)
     return triangle
